@@ -1,25 +1,34 @@
-# Create module
-import pandas as pd
-
 def create_feature_type_dict(df):
-    # Define an empty dictionary to store feature types
-    feature_types = {'numerical': [], 'categorical': []}
+    """
+    Classifies features into numerical (continuous or discrete) and categorical (nominal or ordinal).
+    
+    Args:
+        df (pd.DataFrame): The Titanic dataset as a DataFrame.
+    
+    Returns:
+        dict: A dictionary classifying features into numerical and categorical types.
+    """
+    feature_types = {
+        'numerical': {
+            'continuous': [],  # Fill with continuous numerical features
+            'discrete': []  # Fill with discrete numerical features
+        },
+        'categorical': {
+            'nominal': [],  # Fill with nominal categorical features
+            'ordinal': []  # Fill with ordinal categorical features
+        }
+    }
 
-    # Traverse each column
     for col in df.columns:
-        # Determine whether the data type is numeric
         if df[col].dtype in ['int64', 'float64']:
-            # Determine whether it is continuous (if the number of unique values is large, it is considered continuous)
             if df[col].nunique() > 10:
-                feature_types['numerical'].append(col)
+                feature_types['numerical']['continuous'].append(col)
             else:
-                feature_types['numerical'].append(col)
+                feature_types['numerical']['discrete'].append(col)
         else:
-            # Determine whether it is nominal (if the number of unique values is large, it is considered nominal)
             if df[col].nunique() > 10:
-                feature_types['categorical'].append(col)
+                feature_types['categorical']['nominal'].append(col)
             else:
-                feature_types['categorical'].append(col)
+                feature_types['categorical']['ordinal'].append(col)
 
-    # Show feature type dictionary
     return feature_types
