@@ -1,34 +1,12 @@
-def create_feature_type_dict(df):
+def get_numerical_df(df, numerical_features):
     """
-    Classifies features into numerical (continuous or discrete) and categorical (nominal or ordinal).
+    Creates a DataFrame containing only numerical features.
     
     Args:
         df (pd.DataFrame): The Titanic dataset as a DataFrame.
+        numerical_features (list): List of numerical feature names.
     
     Returns:
-        dict: A dictionary classifying features into numerical and categorical types.
+        pd.DataFrame: DataFrame containing only numerical features.
     """
-    feature_types = {
-        'numerical': {
-            'continuous': [],  # Fill with continuous numerical features
-            'discrete': []  # Fill with discrete numerical features
-        },
-        'categorical': {
-            'nominal': [],  # Fill with nominal categorical features
-            'ordinal': []  # Fill with ordinal categorical features
-        }
-    }
-
-    for col in df.columns:
-        if df[col].dtype in ['int64', 'float64']:
-            if df[col].nunique() > 10:
-                feature_types['numerical']['continuous'].append(col)
-            else:
-                feature_types['numerical']['discrete'].append(col)
-        else:
-            if df[col].nunique() > 10:
-                feature_types['categorical']['nominal'].append(col)
-            else:
-                feature_types['categorical']['ordinal'].append(col)
-
-    return feature_types
+    pass  # Implement the logic here
