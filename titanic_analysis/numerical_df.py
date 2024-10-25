@@ -9,4 +9,7 @@ def get_numerical_df(df, numerical_features):
     Returns:
         pd.DataFrame: DataFrame containing only numerical features.
     """
-    pass  # Implement the logic here
+    # Create a new DataFrame with only numerical features
+    numerical_df = df.select_dtypes(include=['int64', 'float64'])
+    
+    return numerical_df
