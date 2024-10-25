@@ -8,6 +8,7 @@ def create_summary_table(df):
     Returns:
         pd.DataFrame: A summary DataFrame.
     """
+    # Create a summary table
     summary_table = pd.DataFrame({
         'Feature Name': df.columns,
         'Data Type': df.dtypes,
