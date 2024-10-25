@@ -11,8 +11,8 @@ def load_titanic_data(filepath: str) -> pd.DataFrame:
         pd.DataFrame: Loaded Titanic dataset as a DataFrame.
     """
     try:
-        data = pd.read_csv(filepath)
-        return data
+        df = pd.read_csv(filepath)
+        return df
     except Exception as e:
-        print(f"An error occurred while loading the data: {e}")
-        return pd.DataFrame() 
+        print(f"Error loading data: {e}")
+        return pd.DataFrame()  
