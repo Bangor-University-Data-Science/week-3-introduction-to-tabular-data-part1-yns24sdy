@@ -32,3 +32,5 @@ def create_feature_type_dict(df):
                 feature_types['categorical']['ordinal'].append(col)
 
     return feature_types
+
+print(create_feature_type_dict(pd.read_csv('/mnt/titanic.csv')))
