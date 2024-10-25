@@ -1,17 +1,9 @@
+import unittest
 import pandas as pd
+from titanic_analysis.data_loader import load_titanic_data
 
 
-def load_titanic_data(filepath: str) -> pd.DataFrame:
-    # Load the data
-    data = pd.read_csv(filepath)
-
-    return data
-
-
-# Load the dataset
-titanic_data = load_titanic_data('/mnt/titanic.csv')
-
-print("Basic information of the dataset:")
-titanic_data.info()
-print("The first few rows of the dataset:")
-print(titanic_data.head())
+def test_load_titanic_data():
+    df = load_titanic_data("/mnt/titanic.csv")
+    assert isinstance(df, pd.DataFrame), "The returned object should be a DataFrame"
+    assert not df.empty, "The DataFrame should not be empty"
