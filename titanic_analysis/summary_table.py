@@ -11,8 +11,8 @@ def create_summary_table(df: pd.DataFrame) -> pd.DataFrame:
     summary = pd.DataFrame({
         'Feature Name': df.columns,
         'Data Type': df.dtypes,
-        'Unique Values': [df[col].nunique() for col in df.columns],
-        'Missing Values': [df[col].isnull().sum() > 0 for col in df.columns]
+        'Number of Unique Values': [df[col].nunique() for col in df.columns],
+        'Has Missing Values?': [df[col].isnull().sum() > 0 for col in df.columns]
     })
     
     return summary
