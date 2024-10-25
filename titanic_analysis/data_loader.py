@@ -1,9 +1,10 @@
 import pandas as pd
-from titanic_analysis.data_loader import load_titanic_data
+import os
 
-def test_load_titanic_data():
-    df = load_titanic_data("../../data/titanic.csv")
-    assert isinstance(df, pd.DataFrame), "The returned object should be a DataFrame"
-    assert not df.empty, "The DataFrame should not be empty"
-
-test_load_titanic_data()
+def load_titanic_data(filepath="data/titanic.csv"):
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    full_path = os.path.join(current_directory, filepath)
+    try:
+        return pd.read_csv(full_path)
+    except FileNotFoundError:
+        raise FileNotFoundError(f"File not found: {full_path}")
