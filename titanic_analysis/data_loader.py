@@ -1,13 +1,21 @@
-import pandas as pd
-
-def load_titanic_data(filepath: str) -> pd.DataFrame:
+def create_feature_type_dict(df):
     """
-    Loads the Titanic dataset from the specified file path.
+    Classifies features into numerical (continuous or discrete) and categorical (nominal or ordinal).
     
     Args:
-        filepath (str): Path to the Titanic CSV file.
+        df (pd.DataFrame): The Titanic dataset as a DataFrame.
     
     Returns:
-        pd.DataFrame: Loaded Titanic dataset as a DataFrame.
+        dict: A dictionary classifying features into numerical and categorical types.
     """
-    pass  # Implement the loading logic here
+    feature_types = {
+        'numerical': {
+            'continuous': [],  # Fill with continuous numerical features
+            'discrete': []  # Fill with discrete numerical features
+        },
+        'categorical': {
+            'nominal': [],  # Fill with nominal categorical features
+            'ordinal': []  # Fill with ordinal categorical features
+        }
+    }
+    return feature_types
