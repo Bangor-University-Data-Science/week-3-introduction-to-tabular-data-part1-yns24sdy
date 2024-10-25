@@ -1,22 +1,12 @@
-def create_feature_type_dict(df):
-    feature_types = {}
+from titanic_analysis.feature_type_dict import create_feature_type_dict
+import pandas as pd
 
-    for column in df.columns:
-        if df[column].dtype in ['int64', 'float64']:
-            if df[column].nunique() > 20:
-                feature_types[column] = 'numerical_continuous'
-            else:
-                feature_types[column] = 'numerical_discrete'
-        else:
-            if df[column].nunique() > 10:
-                feature_types[column] = 'categorical_nominal'
-            else:
-                feature_types[column] = 'categorical_ordinal'
-
-    return feature_types
-
-# Use functions for classification
-feature_types = create_feature_type_dict(df)
-
-# Output classification result
-feature_types
+def test_create_feature_type_dict():
+    mock_df = pd.DataFrame({
+        'Age': [22, 38, 26, 35],
+        'Sex': ['male', 'female', 'female', 'male'],
+        'Survived': [0, 1, 1, 0]
+    })
+    feature_types = create_feature_type_dict(mock_df)
+    expected_types = {'numerical_continuous', 'categorical_ordinal'}
+    assert set(feature_types.values()) & expected_types == expected_types
